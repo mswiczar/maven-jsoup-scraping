@@ -12,6 +12,8 @@ import org.jsoup.select.Elements;
 public class Scrapping {
 	
 	public static final String url = "https://www.embrujojeans.com/marca-embrujo.html?&evento=&precioMenorReal=&precioMayorReal=&ofertas=&menu=&dato_a_buscar=&cate=&filtro_marca=&filtro_color=&filtro_talle=&filtro_categoria=&filtro_subcategoria=&filtro_tercercategoria=&aplicarPrecios=&mantenerPrecios=&page=";
+	public static final String base_url = "https://www.embrujojeans.com/";
+
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
 	public static void main(String[] args) {
@@ -46,19 +48,27 @@ public class Scrapping {
 								myHashItem.put("Titulo",titulo);
 								myHashItem.put("SKU",sku);
 								myHashItem.put("Precio",price);
-								myHashItem.put("Imagen",imagen);
+								myHashItem.put("ImagenWebp",imagen);
 								myHashItem.put("Ficha",ficha);
+						        String[] auxArray = ficha.split("-");
+						        if (auxArray.length > 1)
+						        {
+									myHashItem.put("id_external",auxArray[1]);
+						        }
 								
+						        
 								
 								listItems.add(myHashItem);
 								
 								System.out.print("Titulo: " + titulo + " | ");
 								System.out.print("SKU: "  + sku+ " | ");
 								System.out.print("Precio: "  +price + " | ");
-								System.out.print("Imagen: "  +imagen + " | ");
+								System.out.print("ImagenWebp: "  +imagen + " | ");
 								System.out.print("Ficha: "  +ficha + " | ");
+								System.out.print("External_id: "  +myHashItem.get("id_external") + " | ");
 								System.out.print("\n");
 
+								
 							}
 						}
 					}
