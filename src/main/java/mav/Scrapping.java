@@ -23,7 +23,15 @@ public class Scrapping {
 		{
 			  System.out.println(elemento.get("SKU"));
 		}
+		//talle y color
+		//gridcart-wrapp
+		//attribute -<div class="attribute">
+		//<input type="text" class="m-cantidad" data-codigo="9076/5-bl" data-color="#ffffff|Blanco" data-talle="Talle Único" data-stock="3" data-precio="310" placeholder="0">
 		
+		//imagenes hasta 3 
+		//class b1
+		//t1
+		//<img src="productos/1574776834/250w_01_1583408990.jpg">
 	}
 	
 	
