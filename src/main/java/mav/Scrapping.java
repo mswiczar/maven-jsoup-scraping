@@ -16,7 +16,19 @@ public class Scrapping {
 
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
-	public static void main(String[] args) {
+	public static void  updateWithImagesPriceAndSize()
+	{
+		
+		for (HashMap<String,String> elemento: listItems)
+		{
+			  System.out.println(elemento.get("SKU"));
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) 
+	{
 
 				HashMap<String,String >myHashItem;
 				if (getStatusConnectionCode(url) == 200) 
@@ -72,6 +84,7 @@ public class Scrapping {
 							}
 						}
 					}
+					updateWithImagesPriceAndSize();
 						
 				}
 				else
