@@ -1,6 +1,8 @@
 package mav;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.jsoup.Connection.Response;
@@ -8,6 +10,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class Scrapping {
 	
@@ -16,12 +21,36 @@ public class Scrapping {
     public static final int maxIteraccion = 1;
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
+	
+	public static void save2File()
+	{
+		JSONArray jsArray = new JSONArray(listItems);
+		StringWriter out = new StringWriter();		
+		jsArray.write(out);
+		
+		FileWriter fw;
+		try {
+			fw = new FileWriter("./embrujo.json");
+			fw.write(out.toString());
+			fw.close();
+
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	public static void  updateWithImagesPriceAndSize()
 	{
+		int total = 0;
 		
 		for (HashMap<String,String> elemento: listItems)
 		{
-				System.out.print( "-------------------------------------------\n");
+				total++;
+				System.out.print( "-------" + total  +"------------------------------------\n");
 			    System.out.println(elemento.get("SKU"));
 			  	Document document = getHtmlDocument(base_url+elemento.get("Ficha"));
 			    System.out.println(base_url+elemento.get("Ficha"));
@@ -168,7 +197,7 @@ public class Scrapping {
 						}
 					}
 					updateWithImagesPriceAndSize();
-						
+					save2File();	
 				}
 				else
 				{
