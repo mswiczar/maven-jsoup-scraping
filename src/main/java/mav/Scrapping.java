@@ -23,54 +23,51 @@ public class Scrapping {
 		{
 				System.out.print( "-------------------------------------------\n");
 			    System.out.println(elemento.get("SKU"));
-			  	Document document = getHtmlDocument(base_url+"/"+elemento.get("Ficha"));
+			  	Document document = getHtmlDocument(base_url+elemento.get("Ficha"));
+			    System.out.println(base_url+elemento.get("Ficha"));
 				
 				//talle y color
 				//gridcart-wrapp
 				//attribute -<div class="attribute">
 				//<input type="text" class="m-cantidad" data-codigo="9076/5-bl" data-color="#ffffff|Blanco" data-talle="Talle Único" data-stock="3" data-precio="310" placeholder="0">
 
-			  	Elements entradas = document.select("div.gridcart-wrapp");
+
+			  	Elements entradas = document.select("div.gridcart-wrapone");
 				System.out.println("Cantidad Talle y Color: "+entradas.size()+"\n");
 				
-				String Talles="";
-				String Colores="";
+				String TalleColorStock =""; 
 				
 				for (Element elem : entradas) 
 				{
 					//talle
 					//color
-					String Talle = elem.getElementsByTag("input").attr("data-talle");
-					String Color = elem.getElementsByTag("input").attr("data-color");
-					if (Color.length()>0)
-					{
-				        String[] auxArray = Color.split("|");
-				        if (auxArray.length > 1)
-				        {
-							//myHashItem.put("id_external",auxArray[1]);
-				        }
-					}
-					if (Talles.length()==0)
-					{
-						Talles = Talles + Talle;
-					}
-					else
-					{
-						Talles = Talles + "," Talle;
-					}
-					elemento.put("Talles",Talles);
-					elemento.put("Colores",Colores);
 					
-					System.out.print("Talles: " + Talles + " | ");
-					System.out.print("Colores: "  + Colores+ " | ");
-					System.out.print("\n");
 					
+				  	Elements entradasInput = elem.getElementsByTag("input");
+					for (Element elemInput : entradasInput) 
+					{
+						String Talle = elemInput.attr("data-talle");
+						String Color = elemInput.attr("data-color");
+						String Stock = elemInput.attr("data-stock");
+
+						if (TalleColorStock.length()==0)
+						{
+							TalleColorStock = TalleColorStock + Talle +  " :: " + Color +  " :: " + Stock ;
+						}
+						else
+						{
+							TalleColorStock = TalleColorStock + "," + Talle +  " :: " + Color +  " :: " + Stock ;
+						}
+					}
 					
 				}
 				
+				elemento.put("TallesColorStock",TalleColorStock);
+
 				
-			  
-			  
+				System.out.print("TallesColorStock: " + TalleColorStock );
+				System.out.print("\n");
+				
 				
 				//imagenes hasta 3 
 
@@ -79,13 +76,7 @@ public class Scrapping {
 				//<img src="productos/1574776834/250w_01_1583408990.jpg">
 			  	//entradas = document.select("div.d2.t1");
 				//System.out.println("Cantidad Images: "+entradas.size()+"\n");
-			  
-			  
-			  
 		}
-		
-		
-		
 	}
 	
 	
