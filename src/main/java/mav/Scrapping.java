@@ -11,14 +11,14 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.json.JSONArray;
-import org.json.JSONObject;
+
 
 
 public class Scrapping {
 	
 	public static final String url = "https://www.embrujojeans.com/marca-embrujo.html?&evento=&precioMenorReal=&precioMayorReal=&ofertas=&menu=&dato_a_buscar=&cate=&filtro_marca=&filtro_color=&filtro_talle=&filtro_categoria=&filtro_subcategoria=&filtro_tercercategoria=&aplicarPrecios=&mantenerPrecios=&page=";
 	public static final String base_url = "https://www.embrujojeans.com/";
-    public static final int maxIteraccion = 1;
+    public static final int maxIteraccion = 30;
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
 	
@@ -33,6 +33,7 @@ public class Scrapping {
 			fw = new FileWriter("./embrujo.json");
 			fw.write(out.toString());
 			fw.close();
+			System.out.print( "------END------------\n");
 
 		
 		} catch (IOException e) {
@@ -142,6 +143,7 @@ public class Scrapping {
 	
 	public static void main(String[] args) 
 	{
+				System.out.print( "------START------------\n");
 
 				HashMap<String,String >myHashItem;
 				if (getStatusConnectionCode(url) == 200) 
