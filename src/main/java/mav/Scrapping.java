@@ -69,13 +69,44 @@ public class Scrapping {
 				System.out.print("\n");
 				
 				
+				
 				//imagenes hasta 3 
-
 				//class b1
 				//t1
 				//<img src="productos/1574776834/250w_01_1583408990.jpg">
 			  	//entradas = document.select("div.d2.t1");
 				//System.out.println("Cantidad Images: "+entradas.size()+"\n");
+				
+				
+			  	Elements entradasImagenes = document.select("div.d2");
+				System.out.println("Cantidad Imagenes: "+entradasImagenes.size()+"\n");
+				
+
+				String Imagen1 ="";
+				String Imagen2 ="";
+				String Imagen3 ="";
+
+				try
+				{
+					Imagen1 =entradasImagenes.get(0).getElementById("img01").attr("href");
+					Imagen2 =entradasImagenes.get(0).getElementById("img02").attr("href");
+					Imagen3 =entradasImagenes.get(0).getElementById("img03").attr("href");
+				}
+				catch (Exception e)
+				{
+					
+				}
+				
+				elemento.put("Imagen1",Imagen1);
+				elemento.put("Imagen2",Imagen2);
+				elemento.put("Imagen3",Imagen3);
+				
+				System.out.print("Imagen1: "  +Imagen1 + " | ");
+				System.out.print("Imagen2: "  +Imagen2 + " | ");
+				System.out.print("Imagen3: "  +Imagen3 + " | ");
+				System.out.print("\n");
+				
+				
 		}
 	}
 	
