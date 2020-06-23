@@ -16,9 +16,9 @@ import org.json.JSONArray;
 
 public class Scrapping {
 	
-	public static final String url = "https://www.benka.com.ar/productos/?sort_by=alpha-ascending&mpage=12";
+	public static final String url = "https://www.benka.com.ar/productos/page/";
 	public static final String base_url = "https://www.benka.com.ar/";
-    public static final int maxIteraccion = 1;
+    public static final int maxIteraccion = 13;
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
 	
@@ -148,24 +148,27 @@ public class Scrapping {
 				HashMap<String,String >myHashItem;
 				if (getStatusConnectionCode(url) == 200) 
 				{
-					for (int i = 0; i<maxIteraccion;i++)
+					for (int i = 1; i<maxIteraccion;i++)
 					{
 						System.out.print( "->" +i+ "\n");
 						System.out.print( "-------------------------------------------\n");
-						//Document document = getHtmlDocument(url+i);
-						Document document = getHtmlDocument(url);
-						Elements entradas = document.select("div.d1");
+						
+						
+						Document document = getHtmlDocument(url+i+"/?sort_by=alpha-ascending");
+						//Document document = getHtmlDocument(url);
+						Elements entradas = document.select("div.span3.item-container");
 						System.out.println("Cantidad de Productos: "+entradas.size()+"\n");
 						if (entradas.size()==0)
 						{
 							break;
 						}
-
 						for (Element elem : entradas) 
 						{
-						
+
 							String imagen = elem.getElementsByAttribute("srcset").attr("srcset");
 							String titulo = elem.getElementsByClass("title").text();
+							
+							/*
 							String sku = elem.getElementsByClass("sku").text();
 							String price = elem.getElementsByClass("price").text();
 							String ficha = elem.getElementsByAttribute("href").attr("href");
@@ -197,10 +200,12 @@ public class Scrapping {
 
 								
 							}
+							*/
 						}
+						
 					}
-					updateWithImagesPriceAndSize();
-					save2File();	
+					//updateWithImagesPriceAndSize();
+					//save2File();	
 				}
 				else
 				{
