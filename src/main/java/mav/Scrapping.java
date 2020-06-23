@@ -165,10 +165,36 @@ public class Scrapping {
 						for (Element elem : entradas) 
 						{
 
-							String imagen = elem.getElementsByAttribute("srcset").attr("srcset");
-							String titulo = elem.getElementsByClass("title").text();
+							//String imagen = elem.getElementsByAttribute("srcset").attr("srcset");
+							//String titulo = elem.getElementsByClass("title").text();
+
+							String titulo = elem.getElementsByAttribute("title").attr("title");
+							String precio =  elem.getElementsByClass("item-price").text();	
+							String imagen =  elem.getElementsByAttribute("src").attr("src");
+							String url =  elem.getElementsByAttribute("href").attr("href");
+
+							precio = precio.replace(",00", "");
+							precio = precio.replace("$", "");
+							precio = precio.replace(".", "");
+
+							imagen = imagen.replace("-100-0.jpg", "-640-0.jpg");
+							imagen = "https:"+imagen;
+							
+							System.out.print( "->" + titulo+ "\n");
+							System.out.print( "->->" + precio+ "\n");
+							System.out.print( "->->->" + imagen+ "\n");
+
+							myHashItem = new HashMap<String,String >();
+								myHashItem.put("Titulo",titulo);
+								myHashItem.put("Precio",precio);
+								myHashItem.put("Imagen",imagen);
+								myHashItem.put("URL",url);
+							listItems.add(myHashItem);
+							
+							
 							
 							/*
+							https://d26lpennugtm8s.cloudfront.net/stores/001/053/068/products/foto-10-5-20-14-39-591-55121930a4402056e315892996277827-100-0.jpg
 							String sku = elem.getElementsByClass("sku").text();
 							String price = elem.getElementsByClass("price").text();
 							String ficha = elem.getElementsByAttribute("href").attr("href");
@@ -205,7 +231,7 @@ public class Scrapping {
 						
 					}
 					//updateWithImagesPriceAndSize();
-					//save2File();	
+					save2File();	
 				}
 				else
 				{
