@@ -16,9 +16,9 @@ import org.json.JSONArray;
 
 public class Scrapping {
 	
-	public static final String url = "https://www.embrujojeans.com/marca-embrujo.html?&evento=&precioMenorReal=&precioMayorReal=&ofertas=&menu=&dato_a_buscar=&cate=&filtro_marca=&filtro_color=&filtro_talle=&filtro_categoria=&filtro_subcategoria=&filtro_tercercategoria=&aplicarPrecios=&mantenerPrecios=&page=";
-	public static final String base_url = "https://www.embrujojeans.com/";
-    public static final int maxIteraccion = 30;
+	public static final String url = "https://www.benka.com.ar/productos/?sort_by=alpha-ascending&mpage=12";
+	public static final String base_url = "https://www.benka.com.ar/";
+    public static final int maxIteraccion = 1;
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
 	
@@ -30,7 +30,7 @@ public class Scrapping {
 		
 		FileWriter fw;
 		try {
-			fw = new FileWriter("./embrujo.json");
+			fw = new FileWriter("./benka.json");
 			fw.write(out.toString());
 			fw.close();
 			System.out.print( "------END------------\n");
@@ -152,7 +152,8 @@ public class Scrapping {
 					{
 						System.out.print( "->" +i+ "\n");
 						System.out.print( "-------------------------------------------\n");
-						Document document = getHtmlDocument(url+i);
+						//Document document = getHtmlDocument(url+i);
+						Document document = getHtmlDocument(url);
 						Elements entradas = document.select("div.d1");
 						System.out.println("Cantidad de Productos: "+entradas.size()+"\n");
 						if (entradas.size()==0)
