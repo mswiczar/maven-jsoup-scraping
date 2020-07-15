@@ -19,8 +19,8 @@ public class Scrapping {
 	//	public static final String url = "https://www.benka.com.ar/productos/page/";
 	//	public static final String base_url = "https://www.benka.com.ar/";
 	
-	public static final String url = "https://www.coccolati.com.ar/productos/page/";
-	public static final String base_url = "https://www.coccolati.com.ar/";
+	public static final String url = "https://www.ehanny.com.ar/productos/page/";
+	public static final String base_url = "https://www.ehanny.com.ar/";
 
 	
 	public static final int maxIteraccion = 11;
@@ -35,7 +35,7 @@ public class Scrapping {
 		
 		FileWriter fw;
 		try {
-			fw = new FileWriter("./coccolati.json");
+			fw = new FileWriter("./ehanny.json");
 			fw.write(out.toString());
 			fw.close();
 			System.out.print( "------END------------\n");
