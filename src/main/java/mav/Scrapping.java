@@ -16,9 +16,14 @@ import org.json.JSONArray;
 
 public class Scrapping {
 	
-	public static final String url = "https://www.benka.com.ar/productos/page/";
-	public static final String base_url = "https://www.benka.com.ar/";
-    public static final int maxIteraccion = 13;
+	//	public static final String url = "https://www.benka.com.ar/productos/page/";
+	//	public static final String base_url = "https://www.benka.com.ar/";
+	
+	public static final String url = "https://www.coccolati.com.ar/productos/page/";
+	public static final String base_url = "https://www.coccolati.com.ar/";
+
+	
+	public static final int maxIteraccion = 11;
 	public static ArrayList<HashMap<String,String> > listItems = new ArrayList<HashMap<String,String>>() ;
 
 	
@@ -30,7 +35,7 @@ public class Scrapping {
 		
 		FileWriter fw;
 		try {
-			fw = new FileWriter("./benka.json");
+			fw = new FileWriter("./coccolati.json");
 			fw.write(out.toString());
 			fw.close();
 			System.out.print( "------END------------\n");
