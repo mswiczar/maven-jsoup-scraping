@@ -191,9 +191,11 @@ public class Scrapping {
 							imagen = imagen.replace("-100-0.jpg", "-640-0.jpg");
 							imagen = "https:"+imagen;
 							
-							System.out.print( "->" + titulo+ "\n");
-							System.out.print( "->->" + precio+ "\n");
-							System.out.print( "->->->" + imagen+ "\n");
+							System.out.print( "Titulo: " + titulo+ "\n");
+							System.out.print( "Precio: " + precio+ "\n");
+							System.out.print( "Imagen: " + imagen+ "\n");
+
+							System.out.print( "URL: " + url+ "\n");
 
 							myHashItem = new HashMap<String,String >();
 								myHashItem.put("Titulo",titulo);
