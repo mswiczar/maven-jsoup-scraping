@@ -162,8 +162,13 @@ public class Scrapping {
 						Document document = getHtmlDocument(url+i+"/?sort_by=alpha-ascending");
 						//Document document = getHtmlDocument(url);
 						//p-relative overflow-none
-						Elements entradas = document.select("div.span3.item-container");
+						
+						//Elements entradas = document.select("div.span3.item-container");
+						//Elements entradas = document.select("div.js-item-image-container item-image-container");
+						Elements entradas = document.select("div.p-relative.overflow-none");
+						
 						System.out.println("Cantidad de Productos: "+entradas.size()+"\n");
+
 						if (entradas.size()==0)
 						{
 							break;
