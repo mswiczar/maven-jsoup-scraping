@@ -184,6 +184,7 @@ public class Scrapping {
 							precio = precio.replace(".", "");
 
 							imagen = imagen.replace("-100-0.jpg", "-640-0.jpg");
+							imagen = imagen.replace("-100-0.jpeg", "-640-0.jpeg");
 							imagen = "https:"+imagen;
 							
 							System.out.print( "->" + titulo+ "\n");
